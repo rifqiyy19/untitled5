@@ -11,7 +11,7 @@ public class CalculatorLogic {
      * Konstruktor untuk membuat objek CalculatorLogic.
      * @param angka1 angka pertama
      * @param angka2 angka kedua
-     * @param operator operator matematika (+, -, *, /)
+     * @param operator operator matematika (+, -, *, /, %)
      */
     public CalculatorLogic(double angka1, double angka2, char operator) {
         this.angka1 = angka1;
@@ -34,6 +34,11 @@ public class CalculatorLogic {
                     throw new IllegalArgumentException("Tidak bisa membagi dengan nol!");
                 }
                 return bagi();
+            case '%':
+                if (angka2 == 0) {
+                    throw new IllegalArgumentException("Tidak bisa modulus dengan nol");
+                }
+                return modulus();
             default:
                 throw new IllegalArgumentException("Operator tidak valid!");
         }
@@ -50,6 +55,9 @@ public class CalculatorLogic {
 
     /** @return hasil pembagian */
     private double bagi() { return angka1 / angka2; }
+
+    /** @return hasil modulus */
+    private double modulus() { return angka1 % angka2; }
 
     /** @return angka pertama */
     public double getAngka1() { return angka1; }
